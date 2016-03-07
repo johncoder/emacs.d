@@ -28,11 +28,11 @@
 
 ;; Load Files
 (load-file "~/.emacs.d/johncoder/ui.el")
-(load-file "~/.emacs.d/johncoder/keybindings.el")
 (load-file "~/.emacs.d/johncoder/org.el")
 (load-file "~/.emacs.d/johncoder/cpp.el")
 (load-file "~/.emacs.d/johncoder/javascript.el")
 (load-file "~/.emacs.d/johncoder/go.el")
+(load-file "~/.emacs.d/johncoder/keybindings.el")
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
