@@ -19,7 +19,7 @@
               '(zenburn-theme spacegray-theme highlight-chars)
               '(smart-mode-line powerline spaceline)
               ;; IDE Modes
-              '(js2-mode js-comint)
+              '(js2-mode js-comint flymake-jshint)
               '(go-mode)
               '(markdown-mode handlebars-mode)
               ;; Productivity
@@ -45,6 +45,8 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
+
+(setq compilation-read-command nil)
 
 ;; Custom Variables
 (custom-set-variables

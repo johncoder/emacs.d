@@ -14,3 +14,23 @@
 (setq inferior-js-mode-hook
       (lambda ()
 	(ansi-color-for-comint-mode-on)))
+
+;; COMPILATION
+(add-to-list
+ 'compilation-error-regexp-alist-alist
+ '(jshint "^\\(.*\\): line \\([0-9]+\\), col \\([0-9]+\\), " 1 2 3))
+
+(add-to-list 'compilation-error-regexp-alist 'jshint)
+
+(defun find-root-git ()
+  (locate-dominating-file default-directory ".git"))
+
+(defun jshint-compile-command ()
+  (concat "jshint " (confat (find-root-git) "")))
+
+;; TODO(john): make this flexible to invoke jshint, jslint, eslint
+;; based purely on what dotfiles it finds in the root git folder.
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (set (make-local-variable 'compile-command)
+            (compile-js-recursive))))

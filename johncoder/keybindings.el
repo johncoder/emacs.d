@@ -16,3 +16,6 @@
 (global-set-key (kbd "C-S-A") 'select-to-beginning-of-line)
 (global-set-key (kbd "C-<tab>") 'other-window)
 (global-set-key (kbd "C-S-<tab>") 'other-window-prev)
+(global-set-key (kbd "<f5>") 'compile)
+(global-set-key (kbd "C-<f5>") 'next-error)
+(global-set-key (kbd "C-S-<f5>") 'previous-error)
