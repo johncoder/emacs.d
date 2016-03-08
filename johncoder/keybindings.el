@@ -7,3 +7,7 @@
 
 (global-set-key (kbd "C-<tab>") 'other-window)
 (global-set-key (kbd "C-S-<tab>") 'other-window-prev)
+
+(add-hook 'org-mode-hook
+          '(lambda ()
+             (define-key org-mode-map [(control tab)] nil)))
