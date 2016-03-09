@@ -16,21 +16,37 @@
 	(ansi-color-for-comint-mode-on)))
 
 ;; COMPILATION
-(add-to-list
- 'compilation-error-regexp-alist-alist
- '(jshint "^\\(.*\\): line \\([0-9]+\\), col \\([0-9]+\\), " 1 2 3))
 
+(add-to-list 'compilation-error-regexp-alist-alist
+             '(eslint "^\\(\w+\\):\\([0-9]+\\):\\([0-9]+\\):.*$" 1 2 3))
+(add-to-list 'compilation-error-regexp-alist 'eslint)
+
+(add-to-list 'compilation-error-regexp-alist-alist
+             '(jshint "^\\(.*\\): line \\([0-9]+\\), col \\([0-9]+\\), " 1 2 3))
 (add-to-list 'compilation-error-regexp-alist 'jshint)
 
 (defun find-root-git ()
   (locate-dominating-file default-directory ".git"))
 
-(defun jshint-compile-command ()
-  (concat "jshint " (confat (find-root-git) "")))
+(defun file-at-git-root (f)
+  (concat (find-root-git) f))
 
-;; TODO(john): make this flexible to invoke jshint, jslint, eslint
-;; based purely on what dotfiles it finds in the root git folder.
+(defun jshint-compile-command ()
+  (concat
+   "jshint " (file-at-git-root "")))
+
+(defun eslint-compile-command ()
+  (concat
+   "eslint " (file-at-git-root "")
+   " --format unix"
+   " --ignore-path " (file-at-git-root ".eslintignore")))
+
+(defun compile-javascript ()
+  (cond
+   ((file-exists-p (file-at-git-root ".jshintrc")) (jshint-compile-command))
+   ((file-exists-p (file-at-git-root ".eslintrc.js")) (eslint-compile-command))))
+
 (add-hook 'js2-mode-hook
           (lambda ()
             (set (make-local-variable 'compile-command)
-            (compile-js-recursive))))
+            (compile-javascript))))

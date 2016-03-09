@@ -1,5 +1,6 @@
 (package-initialize)
 (require 'package)
+(require 'compile)
 
 ;; TODO(john): Consider adding code to determine OS.
 
