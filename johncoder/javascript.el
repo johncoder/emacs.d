@@ -50,3 +50,12 @@
           (lambda ()
             (set (make-local-variable 'compile-command)
             (compile-javascript))))
+
+;; TESTING
+(defun test-javascript ()
+  (concat "npm run test --prefix " (file-at-git-root "")))
+
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (set (make-local-variable 'testing-command)
+                 (test-javascript))))
