@@ -8,7 +8,8 @@
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
 
-(package-refresh-contents) ; NOTE(john): on windows this solves some melpa issues
+(when (eq system-type 'windows-nt)
+  (package-refresh-contents)) ; NOTE(john): on windows this solves some melpa issues
 
 ;; NOTE(john): This should be idempotent, and allow sync across machines
 ;; SEE: http://emacs.stackexchange.com/questions/408/synchronize-packages-between-different-machines
@@ -17,12 +18,13 @@
 (mapc #'package-install
       (append '(use-package)
               ;; UI
-              '(zenburn-theme spacegray-theme highlight-chars)
+              '(zenburn-theme spacegray-theme monochrome-theme greymatters-theme phoenix-dark-mono-theme highlight-chars)
               '(smart-mode-line powerline spaceline)
               ;; IDE Modes
               '(js2-mode js-comint flymake-jshint)
               '(go-mode)
               '(markdown-mode handlebars-mode)
+              '(rainbow-mode)
               ;; Productivity
               '(org org-sync)
               '(magit magit-popup)))
