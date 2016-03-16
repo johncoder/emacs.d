@@ -18,7 +18,8 @@
 (mapc #'package-install
       (append '(use-package)
               ;; UI
-              '(zenburn-theme spacegray-theme monochrome-theme greymatters-theme phoenix-dark-mono-theme highlight-chars)
+              '(zenburn-theme highlight-chars)
+              '(monochrome-theme greymatters-theme phoenix-dark-mono-theme)
               '(smart-mode-line powerline spaceline)
               ;; IDE Modes
               '(js2-mode js-comint flymake-jshint)

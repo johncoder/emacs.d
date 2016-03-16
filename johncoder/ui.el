@@ -23,3 +23,4 @@
 (set-face-attribute 'show-paren-match nil :weight 'extra-bold)
 
 (set-cursor-color "#88C9F0")
+(set-face-attribute 'region nil :background "#387498")
