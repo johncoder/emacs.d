@@ -17,6 +17,7 @@
 (defvar my-extra-keywords
   '(("\t" . 'extra-whitespace-face)))
 
+;; Custom Colors
 (require 'paren)
 (set-face-background 'show-paren-match (face-foreground 'default))
 (set-face-foreground 'show-paren-match (face-background 'default))
@@ -24,6 +25,10 @@
 
 (set-cursor-color "#88C9F0")
 (set-face-attribute 'region nil :background "#387498")
+
+(set-face-foreground 'isearch "#cccccc")
+(set-face-background 'isearch "#77597E")
+(custom-set-faces '(isearch-fail ((((class color)) (:background "#A12C0A")))))
 
 ;; Window Management
 (defun transpose-windows ()
