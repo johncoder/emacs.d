@@ -2,7 +2,16 @@
 (require 'package)
 (require 'compile)
 
-;; TODO(john): Consider adding code to determine OS.
+
+(setq utf-translate-cjk-mode nil) ; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
+(set-language-environment 'utf-8)
+(set-keyboard-coding-system 'utf-8-mac) ; For old Carbon emacs on OS X only
+(setq locale-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(unless (eq system-type 'windows-nt)
+  (set-selection-coding-system 'utf-8))
+(prefer-coding-system 'utf-8)
 
 ;;;; PACKAGES
 (add-to-list 'package-archives
@@ -10,6 +19,7 @@
 
 (when (eq system-type 'windows-nt)
   (package-refresh-contents)) ; NOTE(john): on windows this solves some melpa issues
+
 
 ;; NOTE(john): This should be idempotent, and allow sync across machines
 ;; SEE: http://emacs.stackexchange.com/questions/408/synchronize-packages-between-different-machines
