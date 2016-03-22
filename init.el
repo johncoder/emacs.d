@@ -20,6 +20,8 @@
 (when (eq system-type 'windows-nt)
   (package-refresh-contents)) ; NOTE(john): on windows this solves some melpa issues
 
+(when (eq system-type 'darwin)
+  (put 'suspend-frame 'disabled t))
 
 ;; NOTE(john): This should be idempotent, and allow sync across machines
 ;; SEE: http://emacs.stackexchange.com/questions/408/synchronize-packages-between-different-machines
