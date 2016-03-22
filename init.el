@@ -64,6 +64,13 @@
 
 (setq compilation-read-command nil)
 
+;;;; GNUS
+(require 'gnus)
+(setq user-mail-address "jnelson@johncoder.com"
+      user-full-name "John Nelson")
+
+(add-to-list 'gnus-secondary-select-methods '(nntp "news.gnus.org"))
+
 ;; Custom Variables
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
