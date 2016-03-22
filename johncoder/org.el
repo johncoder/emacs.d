@@ -8,6 +8,7 @@
                              "~/org/study.org"
                              "~/org/home.org"))
 
+(custom-set-faces '(org-link ((t (:underline t)))))
 
 ;;;; --------------------------------------------------
 ;;;; TEMPLATE PLACEHOLDERS

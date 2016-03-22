@@ -2,7 +2,6 @@
 (require 'package)
 (require 'compile)
 
-
 (setq utf-translate-cjk-mode nil) ; disable CJK coding/encoding (Chinese/Japanese/Korean characters)
 (set-language-environment 'utf-8)
 (set-keyboard-coding-system 'utf-8-mac) ; For old Carbon emacs on OS X only
@@ -49,6 +48,7 @@
 (load-file "~/.emacs.d/johncoder/javascript.el")
 (load-file "~/.emacs.d/johncoder/go.el")
 (load-file "~/.emacs.d/johncoder/keybindings.el")
+(load-file "~/.emacs.d/johncoder/erc.el")
 
 (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 (setq exec-path (append exec-path '("/usr/local/bin")))
