@@ -13,6 +13,16 @@
 
 (delete-selection-mode 1)
 
+(defun move-and-center ()
+  (interactive)
+  (forward-line)
+  (scroll-up 1))
+
+(defun move-and-center-reverse ()
+  (interactive)
+  (forward-line -1)
+  (scroll-up -1))
+
 ;;;; TESTING
 (defvar testing-command "echo No testing command configured!")
 
@@ -36,3 +46,5 @@
 (global-set-key (kbd "C-<f5>") 'next-error)
 (global-set-key (kbd "C-S-<f5>") 'previous-error)
 (global-set-key (kbd "M-<f5>") 'execute-tests)
+(global-set-key (kbd "M-<RET>") 'move-and-center)
+(global-set-key (kbd "M-\\") 'move-and-center-reverse)
