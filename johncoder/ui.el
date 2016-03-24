@@ -42,4 +42,5 @@
          (w1b (window-buffer w1))
          (w2b (window-buffer w2)))
     (set-window-buffer w1 w2b)
-    (set-window-buffer w2 w1b)))
+    (set-window-buffer w2 w1b))
+  (next-multiframe-window))
