@@ -38,6 +38,7 @@
                    "*automated tests*")
     (pop-to-buffer "*automated tests*")))
 
+(global-set-key (kbd "C-|") 'magit-status)
 (global-set-key (kbd "C-,") 'imenu)
 (global-set-key (kbd "C-S-A") 'select-to-beginning-of-line)
 (global-set-key (kbd "C-<tab>") 'other-window)
@@ -48,3 +49,6 @@
 (global-set-key (kbd "M-<f5>") 'execute-tests)
 (global-set-key (kbd "M-<RET>") 'move-and-center)
 (global-set-key (kbd "M-\\") 'move-and-center-reverse)
+(require 'smart-comment)
+(global-set-key (kbd "M-;") 'smart-comment)
+

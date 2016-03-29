@@ -37,7 +37,7 @@
               '(js2-mode js-comint flymake-jshint)
               '(go-mode)
               '(markdown-mode handlebars-mode)
-              '(rainbow-mode)
+              '(smart-comment)
               ;; Productivity
               '(org org-sync)
               '(magit magit-popup)))
@@ -86,7 +86,7 @@
  '(hl-sexp-background-color "#efebe9")
  '(js2-basic-offset 2)
  '(powerline-default-separator (quote wave))
- '(show-paren-mode t)
+ '(show-paren-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
