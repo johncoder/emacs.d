@@ -40,6 +40,7 @@
 
 ;;;; RUNNING
 (defvar running-command "echo No running command configured!")
+(defvar running-process nil)
 
 (defun execute-run-command ()
   (interactive)
@@ -47,10 +48,11 @@
              (y-or-n-p (format "Save file %s? " (buffer-file-name))))
     (save-buffer))
   (with-output-to-temp-buffer "*run application*"
-    (shell-command (concat "echo Running: " running-command) "*run application*")
-    (shell-command running-command
-                   "*run application*")
+    (setq running-process (start-process-shell-command "run application" "*run application*" running-command))
     (pop-to-buffer "*run application*")))
+(defun kill-running-process ()
+  (interactive)
+  (kill-process running-process))
 
 ;;;; SHELL STUFF
 (defvar default-local-browser-port "80")
@@ -71,6 +73,7 @@
 (global-set-key (kbd "C-S-<f5>") 'previous-error)
 (global-set-key (kbd "M-<f5>") 'execute-tests)
 (global-set-key (kbd "<f8>") 'execute-run-command)
+(global-set-key (kbd "C-S-<f8>") 'kill-running-process)
 (global-set-key (kbd "<f7>") 'open-browser)
 (global-set-key (kbd "M-<RET>") 'move-and-center)
 (global-set-key (kbd "M-\\") 'move-and-center-reverse)
