@@ -59,6 +59,7 @@
   (kill-process running-process))
 
 ;;;; SHELL STUFF
+;;;; TODO(john): add cases for platforms (darwin, windows-nt)
 (defvar default-local-browser-port "80")
 (defun open-browser (port)
   (interactive
