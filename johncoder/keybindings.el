@@ -38,6 +38,29 @@
                    "*automated tests*")
     (pop-to-buffer "*automated tests*")))
 
+;;;; RUNNING
+(defvar running-command "echo No running command configured!")
+
+(defun execute-run-command ()
+  (interactive)
+  (when (and (buffer-modified-p)
+             (y-or-n-p (format "Save file %s? " (buffer-file-name))))
+    (save-buffer))
+  (with-output-to-temp-buffer "*run application*"
+    (shell-command (concat "echo Running: " running-command) "*run application*")
+    (shell-command running-command
+                   "*run application*")
+    (pop-to-buffer "*run application*")))
+
+;;;; SHELL STUFF
+(defvar default-local-browser-port "80")
+(defun open-browser (port)
+  (interactive
+   (list (read-string (format "Open Browser to (default-local-browser-port: %s) http://localhost:" default-local-browser-port))))
+  (shell-command
+   (concat "open -a 'Google Chrome.app' 'http://localhost:'"
+           (if (= (length port) 0) default-local-browser-port port))))
+
 (global-set-key (kbd "C-|") 'magit-status)
 (global-set-key (kbd "C-,") 'imenu)
 (global-set-key (kbd "C-S-A") 'select-to-beginning-of-line)
@@ -47,6 +70,8 @@
 (global-set-key (kbd "C-<f5>") 'next-error)
 (global-set-key (kbd "C-S-<f5>") 'previous-error)
 (global-set-key (kbd "M-<f5>") 'execute-tests)
+(global-set-key (kbd "<f8>") 'execute-run-command)
+(global-set-key (kbd "<f7>") 'open-browser)
 (global-set-key (kbd "M-<RET>") 'move-and-center)
 (global-set-key (kbd "M-\\") 'move-and-center-reverse)
 (require 'smart-comment)

@@ -65,3 +65,13 @@
           (lambda ()
             (set (make-local-variable 'testing-command)
                  (test-javascript))))
+
+;; RUNNING
+
+(defun npm-run ()
+  (concat "npm start " (file-at-git-root "")))
+
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (set (make-local-variable 'running-command)
+                 (npm-run))))
