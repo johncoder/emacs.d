@@ -65,7 +65,9 @@
    (list (read-string (format "Open Browser to (default-local-browser-port: %s) http://localhost:" default-local-browser-port))))
   (shell-command
    (concat "open -a 'Google Chrome.app' 'http://localhost:'"
-           (if (= (length port) 0) default-local-browser-port port))))
+           (when (not (eq (length port) 0))
+               (setq default-local-browser-port port))
+             default-local-browser-port)))
 
 (global-set-key (kbd "C-|") 'magit-status)
 (global-set-key (kbd "C-,") 'imenu)
