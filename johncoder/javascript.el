@@ -69,7 +69,7 @@
 ;; RUNNING
 
 (defun npm-run ()
-  (concat "npm start " (file-at-git-root "")))
+  (concat "npm start " (file-at-git-root "") " --no-color"))
 
 (add-hook 'js2-mode-hook
           (lambda ()

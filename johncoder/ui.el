@@ -30,6 +30,12 @@
 (set-face-background 'isearch "#77597E")
 (custom-set-faces '(isearch-fail ((((class color)) (:background "#A12C0A")))))
 
+(require 'ansi-color)
+(defun display-ansi-colors ()
+  (interactive)
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
+
 ;; Window Management
 (defun transpose-windows ()
   "Transpose two windows.  If more or less than two windows are visible, error."

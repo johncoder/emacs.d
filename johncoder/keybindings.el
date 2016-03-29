@@ -41,15 +41,19 @@
 ;;;; RUNNING
 (defvar running-command "echo No running command configured!")
 (defvar running-process nil)
+(defvar running-process-buffer-name "*run application*")
 
 (defun execute-run-command ()
   (interactive)
   (when (and (buffer-modified-p)
              (y-or-n-p (format "Save file %s? " (buffer-file-name))))
     (save-buffer))
-  (with-output-to-temp-buffer "*run application*"
-    (setq running-process (start-process-shell-command "run application" "*run application*" running-command))
-    (pop-to-buffer "*run application*")))
+  (with-output-to-temp-buffer running-process-buffer-name
+    (setq running-process
+          (start-process-shell-command
+           "run application" running-process-buffer-name running-command))
+    (pop-to-buffer running-process-buffer-name)))
+
 (defun kill-running-process ()
   (interactive)
   (kill-process running-process))
