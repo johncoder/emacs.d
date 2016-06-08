@@ -1,8 +1,17 @@
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+;; (set-face-attribute 'default nil
+;;                     :family "Consolas" :height 140)
 (set-face-attribute 'default nil
-                    :family "Consolas" :height 140)
+                    :family "Hack" :height 120)
 (global-hl-line-mode 1)
+
+;;; NOTE(john): This may not be the right place for this. Consider
+;;; putting in init.el. Could be more helpful to check and see how
+;;; many window splits there are before calling it.
+(split-window-right)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/johncoder/themes")
 ;;(load-theme 'greymatters t)
 ;;(load-theme 'zenburn t)
@@ -48,5 +57,6 @@
          (w1b (window-buffer w1))
          (w2b (window-buffer w2)))
     (set-window-buffer w1 w2b)
-    (set-window-buffer w2 w1b))
-  (next-multiframe-window))
+    (set-window-buffer w2 w1b)))
+;;; NOTE(john): Use transpose-windows with C-` for a while and see if
+;;; it is better without (next-multiframe-window)

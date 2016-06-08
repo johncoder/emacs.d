@@ -43,14 +43,14 @@
 
 (defun eslint-compile-command ()
   (concat
-   "eslint " (file-at-git-root "")
-   " --format unix"
-   " --ignore-path " (file-at-git-root ".eslintignore")))
+   "(cd " (file-at-git-root "")
+   " && eslint . --format unix --ignore-path ./.eslintignore)"))
 
 (defun compile-javascript ()
   (cond
    ((file-exists-p (file-at-git-root ".jshintrc")) (jshint-compile-command))
-   ((file-exists-p (file-at-git-root ".eslintrc.js")) (eslint-compile-command))))
+   ((file-exists-p (file-at-git-root ".eslintrc.js")) (eslint-compile-command))
+   ((file-exists-p (file-at-git-root ".eslintrc")) (eslint-compile-command))))
 
 (add-hook 'js2-mode-hook
           (lambda ()

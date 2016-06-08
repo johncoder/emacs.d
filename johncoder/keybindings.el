@@ -1,3 +1,9 @@
+(defun switch-to-previous-buffer ()
+  "Switch to previously open buffer.
+Repeated invocations toggle between the two most recently open buffers."
+  (interactive)
+  (switch-to-buffer (other-buffer (current-buffer) 1)))
+
 (defun other-window-prev ()
   (interactive)
   (other-window -1))
@@ -86,4 +92,5 @@
 (global-set-key (kbd "M-\\") 'move-and-center-reverse)
 (require 'smart-comment)
 (global-set-key (kbd "M-;") 'smart-comment)
-
+(global-set-key (kbd "C-<f11>") 'toggle-frame-maximized)
+(global-set-key (kbd "C-`") 'transpose-windows)
