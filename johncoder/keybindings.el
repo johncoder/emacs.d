@@ -49,11 +49,17 @@ Repeated invocations toggle between the two most recently open buffers."
 (defvar running-process nil)
 (defvar running-process-buffer-name "*run application*")
 
-(defun execute-run-command ()
-  (interactive)
+(defun execute-run-command (run-command)
+  (interactive
+   (list (read-string (format "Run Command (default: %s): " running-command))))
+  (when (not (eq (length run-command) 0))
+    (setq running-command run-command))
   (when (and (buffer-modified-p)
              (y-or-n-p (format "Save file %s? " (buffer-file-name))))
     (save-buffer))
+  (when (not (eq (process-status "run application") nil))
+    (kill-process running-process)
+    (setq running-process nil))
   (with-output-to-temp-buffer running-process-buffer-name
     (setq running-process
           (start-process-shell-command

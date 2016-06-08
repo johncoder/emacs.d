@@ -24,11 +24,11 @@
          item (clock)
          "  - %i%?")
         ("g" "Thought"
-         entry (file+headline "~/org/thoughts.org")
-         "* Thought: %?\n")
+         entry (file "~/org/thoughts.org")
+         "* [%U] %?\n")
         ("f" "Follow Up"
-         entry (file+headline "~/org/todo.org")
-         "* TODO: %?\n  %i\n %a\n")
+         entry (file+headline "~/org/todo.org" "inbox")
+         "* TODO: %?\n")
         ("j" "Append journal entry"
          entry (file+datetree "~/org/journal.org")
 	 "* %U %^{Title}\n%?")
