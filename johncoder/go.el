@@ -24,5 +24,6 @@
 
 (add-hook 'go-mode-hook
           (lambda ()
+            (setq tab-width 4)
             (set (make-local-variable 'testing-command)
                  (test-go))))
