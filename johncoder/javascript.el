@@ -14,11 +14,11 @@
            ("\\<\\(QUESTION\\)" 1 'font-lock-question-face t)
            ("\\<\\(NOTE\\)" 1 'font-lock-note-face t))))
       fixme-modes)
-(modify-face 'font-lock-fixme-face "Red" nil nil t nil t nil nil)
+(modify-face 'font-lock-fixme-face "#D64C2A" nil nil t nil t nil nil)
 (modify-face 'font-lock-study-face "Yellow" nil nil t nil t nil nil)
 (modify-face 'font-lock-important-face "Yellow" nil nil t nil t nil nil)
 (modify-face 'font-lock-question-face "#ffa500" nil nil t nil t nil nil)
-(modify-face 'font-lock-note-face "Dark Green" nil nil t nil t nil nil)
+(modify-face 'font-lock-note-face "#8ABB93" nil nil t nil t nil nil)
 
 (setq js2-basic-offset 2)
 ;; JSON files are opened with js-mode
