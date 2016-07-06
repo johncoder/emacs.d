@@ -1,3 +1,25 @@
+;; Colorful Markers
+(setq fixme-modes '(c++-mode c-mode emacs-lisp-mode js2-mode go-mode))
+(make-face 'font-lock-fixme-face)
+(make-face 'font-lock-study-face)
+(make-face 'font-lock-important-face)
+(make-face 'font-lock-question-face)
+(make-face 'font-lock-note-face)
+(mapc (lambda (mode)
+        (font-lock-add-keywords
+         mode
+         '(("\\<\\(TODO\\)" 1 'font-lock-fixme-face t)
+           ("\\<\\(STUDY\\)" 1 'font-lock-study-face t)
+           ("\\<\\(IMPORTANT\\)" 1 'font-lock-important-face t)
+           ("\\<\\(QUESTION\\)" 1 'font-lock-question-face t)
+           ("\\<\\(NOTE\\)" 1 'font-lock-note-face t))))
+      fixme-modes)
+(modify-face 'font-lock-fixme-face "Red" nil nil t nil t nil nil)
+(modify-face 'font-lock-study-face "Yellow" nil nil t nil t nil nil)
+(modify-face 'font-lock-important-face "Yellow" nil nil t nil t nil nil)
+(modify-face 'font-lock-question-face "#ffa500" nil nil t nil t nil nil)
+(modify-face 'font-lock-note-face "Dark Green" nil nil t nil t nil nil)
+
 (setq js2-basic-offset 2)
 ;; JSON files are opened with js-mode
 (add-hook 'js-mode-hook
