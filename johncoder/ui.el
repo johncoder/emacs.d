@@ -12,11 +12,18 @@
 ;;; putting in init.el. Could be more helpful to check and see how
 ;;; many window splits there are before calling it.
 (split-window-right)
-(add-to-list 'custom-theme-load-path "~/.emacs.d/johncoder/themes")
+
+;;(add-to-list 'custom-theme-load-path "~/.emacs.d/johncoder/themes")
 ;;(load-theme 'greymatters t)
 ;;(load-theme 'zenburn t)
 ;;(load-theme 'monochrome t)
 (load-theme 'phoenix-dark-mono t)
+
+;;; NOTE(john): See https://github.com/owainlewis/emacs-color-themes for more sublime themes
+;;(load-theme 'dorsey t)
+;;(load-theme 'granger t)
+;;(load-theme 'brin t)
+
 
 (set-face-background 'hl-line "#222222")
 (setq column-number-mode t)

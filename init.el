@@ -31,14 +31,15 @@
       (append '(use-package)
               ;; UI
               '(zenburn-theme highlight-chars)
-              '(monochrome-theme greymatters-theme phoenix-dark-mono-theme)
+              '(monochrome-theme greymatters-theme phoenix-dark-mono-theme sublime-themes)
               '(smart-mode-line powerline spaceline)
               ;; IDE Modes
-              '(js2-mode js-comint flymake-jshint)
+              '(js2-mode js-comint flycheck) ;; flymake-jshint
               '(go-mode)
               '(markdown-mode handlebars-mode)
               '(smart-comment)
               ;; Productivity
+              '(restclient)
               '(org org-sync)
               '(magit magit-popup)))
 
@@ -65,6 +66,11 @@
 
 (setq compilation-read-command nil)
 
+(setq-default flycheck-disabled-checkers
+              (append flycheck-disabled checkers '(javascript-jshint)))
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;;;; GNUS
 (require 'gnus)
 (setq user-mail-address "jnelson@johncoder.com"
@@ -84,7 +90,10 @@
    (vector "#c5c8c6" "#cc6666" "#b5bd68" "#f0c674" "#81a2be" "#b294bb" "#8abeb7" "#1d1f21"))
  '(fci-rule-color "#373b41")
  '(hl-sexp-background-color "#efebe9")
- '(js2-basic-offset 2)
+ '(js2-basic-offset 2 t)
+ '(package-selected-packages
+   (quote
+    (flycheck restclient magit-popup org js2-mode powerline zenburn-theme use-package tao-theme sublime-themes spacemacs-theme spaceline spacegray-theme smart-mode-line smart-comment rainbow-mode phoenix-dark-mono-theme paredit-everywhere org-sync mustard-theme monochrome-theme markdown-mode magit json-snatcher json-reformat js-comint highlight-chars handlebars-mode greymatters-theme go-mode flymake-jshint ac-js2)))
  '(powerline-default-separator (quote wave))
  '(show-paren-mode t))
 (custom-set-faces
@@ -92,5 +101,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:background nil))))
  '(isearch-fail ((((class color)) (:background "#A12C0A"))))
  '(org-link ((t (:underline t)))))
