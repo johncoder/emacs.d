@@ -29,6 +29,7 @@
 ;; (package-install 'package-name)
 (mapc #'package-install
       (append '(use-package)
+              '(exec-path-from-shell)
               ;; UI
               '(zenburn-theme highlight-chars)
               '(monochrome-theme greymatters-theme phoenix-dark-mono-theme)
@@ -41,6 +42,8 @@
               ;; Productivity
               '(org org-sync)
               '(magit magit-popup)))
+
+(exec-path-from-shell-initialize)
 
 ;; Load Files
 (load-file "~/.emacs.d/johncoder/ui.el")
@@ -84,7 +87,10 @@
    (vector "#c5c8c6" "#cc6666" "#b5bd68" "#f0c674" "#81a2be" "#b294bb" "#8abeb7" "#1d1f21"))
  '(fci-rule-color "#373b41")
  '(hl-sexp-background-color "#efebe9")
- '(js2-basic-offset 2)
+ '(js2-basic-offset 2 t)
+ '(package-selected-packages
+   (quote
+    (exec-path-from-shell-initialize magit-popup org powerline use-package zenburn-theme spaceline smart-mode-line smart-comment req-package phoenix-dark-mono-theme org-sync monochrome-theme markdown-mode magit js2-mode js-comint highlight-chars handlebars-mode greymatters-theme go-mode flymake-jshint)))
  '(powerline-default-separator (quote wave))
  '(show-paren-mode t))
 (custom-set-faces

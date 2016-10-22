@@ -4,8 +4,8 @@
 (tool-bar-mode -1)
 ;; (set-face-attribute 'default nil
 ;;                     :family "Consolas" :height 140)
-(set-face-attribute 'default nil
-                    :family "Hack" :height 120)
+;; (set-face-attribute 'default nil
+;;                     :family "Hack" :height 120)
 (global-hl-line-mode 1)
 
 ;;; NOTE(john): This may not be the right place for this. Consider
