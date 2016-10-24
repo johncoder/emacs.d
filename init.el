@@ -23,25 +23,39 @@
 (when (eq system-type 'darwin)
   (put 'suspend-frame 'disabled t))
 
-;; NOTE(john): This should be idempotent, and allow sync across machines
-;; SEE: http://emacs.stackexchange.com/questions/408/synchronize-packages-between-different-machines
-;; To install one-off packages, use:
-;; (package-install 'package-name)
-(mapc #'package-install
-      (append '(use-package)
-              ;; UI
-              '(zenburn-theme highlight-chars)
-              '(monochrome-theme greymatters-theme phoenix-dark-mono-theme sublime-themes punpun-theme)
-              '(smart-mode-line powerline spaceline)
-              ;; IDE Modes
-              '(js2-mode js-comint flycheck) ;; flymake-jshint
-              '(go-mode)
-              '(markdown-mode handlebars-mode)
-              '(smart-comment)
-              ;; Productivity
-              '(restclient)
-              '(org org-sync)
-              '(magit magit-popup)))
+;; SEE(john): https://github.com/jwiegley/use-package for more information
+(when (not (featurep 'use-package))
+  (package-install 'use-package))
+
+;; UI Packages
+(use-package highlight-chars :ensure t)
+;; (use-package zenburn-theme :ensure t)
+;; (use-package monochrome-theme :ensure t)
+;; (use-package greymatters-theme :ensure t)
+;; (use-package phoenix-dark-mono-theme :ensure t)
+;; (use-package sublime-themes :ensure t)
+;; (use-package punpun-theme :ensure t)
+
+;; IDE Modes
+(use-package js2-mode :ensure t)
+(use-package js-comint :ensure t)
+(use-package flycheck :ensure t)
+;; (use-package flymake-jshint :ensure t)
+(use-package go-mode :ensure t)
+(use-package markdown-mode :ensure t)
+(use-package handlebars-mode :ensure t)
+
+;; Productivity
+(use-package smart-comment :ensure t)
+(use-package restclient :ensure t)
+(use-package org :ensure t)
+(use-package org-sync :ensure t)
+(use-package magit :ensure t)
+(use-package magit-popup :ensure t)
+
+(unless (eq system-type 'darwin)
+  (package-install 'exec-path-from-shell)
+  (exec-path-from-shell-initialize))
 
 ;; Load Files
 ;; (require 'twotone-dark "~/.emacs.d/johncoder/twotone/twotone-dark.el")
@@ -93,9 +107,10 @@
  '(fci-rule-color "#373b41")
  '(hl-sexp-background-color "#efebe9")
  '(js2-basic-offset 2 t)
+ '(js-indent-level 2)
  '(package-selected-packages
    (quote
-    (punpun-theme flycheck restclient magit-popup org js2-mode powerline zenburn-theme use-package tao-theme sublime-themes spacemacs-theme spaceline spacegray-theme smart-mode-line smart-comment rainbow-mode phoenix-dark-mono-theme paredit-everywhere org-sync mustard-theme monochrome-theme markdown-mode magit json-snatcher json-reformat js-comint highlight-chars handlebars-mode greymatters-theme go-mode flymake-jshint ac-js2)))
+    (use-package smart-comment restclient org-sync markdown-mode magit js2-mode js-comint highlight-chars handlebars-mode go-mode flycheck)))
  '(powerline-default-separator (quote wave))
  '(show-paren-mode t))
 (custom-set-faces
