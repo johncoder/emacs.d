@@ -13,11 +13,14 @@
 ;;; many window splits there are before calling it.
 (split-window-right)
 
-;;(add-to-list 'custom-theme-load-path "~/.emacs.d/johncoder/themes")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/johncoder/twotone")
 ;;(load-theme 'greymatters t)
 ;;(load-theme 'zenburn t)
 ;;(load-theme 'monochrome t)
-(load-theme 'phoenix-dark-mono t)
+;; (load-theme 'phoenix-dark-mono t)
+;; (load-theme 'punpun-dark t)
+;; (load-theme 'punpun-light t)
+(load-theme 'twotone-dark t)
 
 ;;; NOTE(john): See https://github.com/owainlewis/emacs-color-themes for more sublime themes
 ;;(load-theme 'dorsey t)

@@ -31,7 +31,7 @@
       (append '(use-package)
               ;; UI
               '(zenburn-theme highlight-chars)
-              '(monochrome-theme greymatters-theme phoenix-dark-mono-theme sublime-themes)
+              '(monochrome-theme greymatters-theme phoenix-dark-mono-theme sublime-themes punpun-theme)
               '(smart-mode-line powerline spaceline)
               ;; IDE Modes
               '(js2-mode js-comint flycheck) ;; flymake-jshint
@@ -44,6 +44,8 @@
               '(magit magit-popup)))
 
 ;; Load Files
+;; (require 'twotone-dark "~/.emacs.d/johncoder/twotone/twotone-dark.el")
+(load-file "~/.emacs.d/johncoder/twotone/twotone-dark-theme.el")
 (load-file "~/.emacs.d/johncoder/ui.el")
 (load-file "~/.emacs.d/johncoder/org.el")
 (load-file "~/.emacs.d/johncoder/cpp.el")
@@ -66,10 +68,10 @@
 
 (setq compilation-read-command nil)
 
-(setq-default flycheck-disabled-checkers
-              (append flycheck-disabled checkers '(javascript-jshint)))
+;; (setq-default flycheck-disabled-checkers
+;;               (append flycheck-disabled checkers '(javascript-jshint)))
 
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;;;; GNUS
 (require 'gnus)
@@ -93,7 +95,7 @@
  '(js2-basic-offset 2 t)
  '(package-selected-packages
    (quote
-    (flycheck restclient magit-popup org js2-mode powerline zenburn-theme use-package tao-theme sublime-themes spacemacs-theme spaceline spacegray-theme smart-mode-line smart-comment rainbow-mode phoenix-dark-mono-theme paredit-everywhere org-sync mustard-theme monochrome-theme markdown-mode magit json-snatcher json-reformat js-comint highlight-chars handlebars-mode greymatters-theme go-mode flymake-jshint ac-js2)))
+    (punpun-theme flycheck restclient magit-popup org js2-mode powerline zenburn-theme use-package tao-theme sublime-themes spacemacs-theme spaceline spacegray-theme smart-mode-line smart-comment rainbow-mode phoenix-dark-mono-theme paredit-everywhere org-sync mustard-theme monochrome-theme markdown-mode magit json-snatcher json-reformat js-comint highlight-chars handlebars-mode greymatters-theme go-mode flymake-jshint ac-js2)))
  '(powerline-default-separator (quote wave))
  '(show-paren-mode t))
 (custom-set-faces

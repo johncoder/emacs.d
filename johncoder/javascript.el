@@ -71,8 +71,13 @@
    "(cd " (file-at-git-root "")
    " && eslint . --format unix --ignore-path ./.eslintignore)"))
 
+(defun semistandard-compile-command ()
+  (concat
+   "semistandard " (file-at-git-root "")))
+
 (defun compile-javascript ()
   (cond
+   ((file-exists-p (file-at-git-root "/node_modules/semistandard/package.json")) (semistandard-compile-command))
    ((file-exists-p (file-at-git-root ".jshintrc")) (jshint-compile-command))
    ((file-exists-p (file-at-git-root ".eslintrc.js")) (eslint-compile-command))
    ((file-exists-p (file-at-git-root ".eslintrc")) (eslint-compile-command))))
