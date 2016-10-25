@@ -36,6 +36,20 @@
 ;; (use-package sublime-themes :ensure t)
 ;; (use-package punpun-theme :ensure t)
 
+;; SEE(john): http://www.lunaryorn.com/posts/center-buffer-text-in-emacs.html
+(use-package visual-fill-column
+  :ensure t
+  :defer t
+  :bind (("C-c t v" . visual-fill-column-mode))
+  :init
+  (dolist (hook '(visual-line-mode-hook
+                  prog-mode-hook
+                  text-mode-hook))
+    (add-hook hook #'visual-fill-column-mode))
+  :config (setq-default visual-fill-column-center-text t
+                        visual-fill-column-width 120
+                        visual-fill-column-fringes-outside-margins nil))
+
 ;; IDE Modes
 (use-package js2-mode :ensure t)
 (use-package js-comint :ensure t)
