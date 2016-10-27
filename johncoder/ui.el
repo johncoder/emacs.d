@@ -2,21 +2,41 @@
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
-;; (set-face-attribute 'default nil
-;;                     :family "Consolas" :height 140)
-(set-face-attribute 'default nil
-                    :family "Hack" :height 120)
+
+;; FONTS
+(defun font-existsp (font)
+  (if (null (x-list-fonts font))
+      nil t))
+
+(defun use-font (fonts)
+  (if (font-existsp (car fonts))
+      (set-face-attribute 'default nil
+                          :family (car fonts) :height 120)
+      (use-font (cdr fonts))))
+
+(use-font '("Input" "Consolas"))
+
 (global-hl-line-mode 1)
 
 ;;; NOTE(john): This may not be the right place for this. Consider
 ;;; putting in init.el. Could be more helpful to check and see how
 ;;; many window splits there are before calling it.
 (split-window-right)
-(add-to-list 'custom-theme-load-path "~/.emacs.d/johncoder/themes")
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/johncoder/twotone")
 ;;(load-theme 'greymatters t)
 ;;(load-theme 'zenburn t)
 ;;(load-theme 'monochrome t)
-(load-theme 'phoenix-dark-mono t)
+;; (load-theme 'phoenix-dark-mono t)
+;; (load-theme 'punpun-dark t)
+;; (load-theme 'punpun-light t)
+(load-theme 'twotone-dark t)
+
+;;; NOTE(john): See https://github.com/owainlewis/emacs-color-themes for more sublime themes
+;;(load-theme 'dorsey t)
+;;(load-theme 'granger t)
+;;(load-theme 'brin t)
+
 
 (set-face-background 'hl-line "#222222")
 (setq column-number-mode t)

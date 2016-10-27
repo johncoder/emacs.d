@@ -34,26 +34,57 @@
 (when (eq system-type 'darwin)
   (put 'suspend-frame 'disabled t))
 
-;; NOTE(john): This should be idempotent, and allow sync across machines
-;; SEE: http://emacs.stackexchange.com/questions/408/synchronize-packages-between-different-machines
-;; To install one-off packages, use:
-;; (package-install 'package-name)
-(mapc #'package-install
-      (append '(use-package)
-              ;; UI
-              '(zenburn-theme highlight-chars)
-              '(monochrome-theme greymatters-theme phoenix-dark-mono-theme)
-              '(smart-mode-line powerline spaceline)
-              ;; IDE Modes
-              '(js2-mode js-comint flymake-jshint)
-              '(go-mode)
-              '(markdown-mode handlebars-mode)
-              '(smart-comment)
-              ;; Productivity
-              '(org org-sync)
-              '(magit magit-popup)))
+;; SEE(john): https://github.com/jwiegley/use-package for more information
+(when (not (featurep 'use-package))
+  (package-install 'use-package))
+
+;; UI Packages
+(use-package highlight-chars :ensure t)
+;; (use-package zenburn-theme :ensure t)
+;; (use-package monochrome-theme :ensure t)
+;; (use-package greymatters-theme :ensure t)
+;; (use-package phoenix-dark-mono-theme :ensure t)
+;; (use-package sublime-themes :ensure t)
+;; (use-package punpun-theme :ensure t)
+
+;; SEE(john): http://www.lunaryorn.com/posts/center-buffer-text-in-emacs.html
+(use-package visual-fill-column
+  :ensure t
+  :defer t
+  :bind (("C-c t v" . visual-fill-column-mode))
+  :init
+  (dolist (hook '(visual-line-mode-hook
+                  prog-mode-hook
+                  text-mode-hook))
+    (add-hook hook #'visual-fill-column-mode))
+  :config (setq-default visual-fill-column-center-text t
+                        visual-fill-column-width 120
+                        visual-fill-column-fringes-outside-margins nil))
+
+;; IDE Modes
+(use-package js2-mode :ensure t)
+(use-package js-comint :ensure t)
+(use-package flycheck :ensure t)
+;; (use-package flymake-jshint :ensure t)
+(use-package go-mode :ensure t)
+(use-package markdown-mode :ensure t)
+(use-package handlebars-mode :ensure t)
+
+;; Productivity
+(use-package smart-comment :ensure t)
+(use-package restclient :ensure t)
+(use-package org :ensure t)
+(use-package org-sync :ensure t)
+(use-package magit :ensure t)
+(use-package magit-popup :ensure t)
+
+(unless (eq system-type 'darwin)
+  (package-install 'exec-path-from-shell)
+  (exec-path-from-shell-initialize))
 
 ;; Load Files
+;; (require 'twotone-dark "~/.emacs.d/johncoder/twotone/twotone-dark.el")
+(load-file "~/.emacs.d/johncoder/twotone/twotone-dark-theme.el")
 (load-file "~/.emacs.d/johncoder/ui.el")
 (load-file "~/.emacs.d/johncoder/org.el")
 (load-file "~/.emacs.d/johncoder/cpp.el")
@@ -76,6 +107,11 @@
 
 (setq compilation-read-command nil)
 
+;; (setq-default flycheck-disabled-checkers
+;;               (append flycheck-disabled checkers '(javascript-jshint)))
+
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
+
 ;;;; GNUS
 (require 'gnus)
 (setq user-mail-address "jnelson@johncoder.com"
@@ -95,7 +131,11 @@
    (vector "#c5c8c6" "#cc6666" "#b5bd68" "#f0c674" "#81a2be" "#b294bb" "#8abeb7" "#1d1f21"))
  '(fci-rule-color "#373b41")
  '(hl-sexp-background-color "#efebe9")
- '(js2-basic-offset 2)
+ '(js2-basic-offset 2 t)
+ '(js-indent-level 2)
+ '(package-selected-packages
+   (quote
+    (use-package smart-comment restclient org-sync markdown-mode magit js2-mode js-comint highlight-chars handlebars-mode go-mode flycheck)))
  '(powerline-default-separator (quote wave))
  '(show-paren-mode t))
 (custom-set-faces
@@ -103,5 +143,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(default ((t (:background nil))))
  '(isearch-fail ((((class color)) (:background "#A12C0A"))))
  '(org-link ((t (:underline t)))))
