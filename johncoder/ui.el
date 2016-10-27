@@ -14,7 +14,11 @@
                           :family (car fonts) :height 120)
       (use-font (cdr fonts))))
 
-(use-font '("Input" "Consolas"))
+(unless (eq system-type 'windows-nt)
+  (use-font '("Input" "Consolas")))
+
+(when (eq system-type 'windows-nt)
+  (use-font '("Consolas")))
 
 (global-hl-line-mode 1)
 
