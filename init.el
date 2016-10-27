@@ -13,6 +13,17 @@
   (set-selection-coding-system 'utf-8))
 (prefer-coding-system 'utf-8)
 
+;; Handle super-tabbify (TAB completes, shift-TAB actually tabs)
+(setq dabbrev-case-replace t)
+(setq dabbrev-case-fold-search t)
+(setq dabbrev-upcase-means-case-search t)
+
+;; Abbrevation expansion
+(abbrev-mode 1)
+;; TODO(john): Consider adding this key mapping
+;; (define-key c++-mode-map "\t" 'dabbrev-expand)
+
+
 ;;;; PACKAGES
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.milkbox.net/packages/") t)
