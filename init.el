@@ -78,7 +78,7 @@
 (use-package magit :ensure t)
 (use-package magit-popup :ensure t)
 
-(unless (eq system-type 'darwin)
+(unless (or (eq system-type 'darwin) (eq system-type 'windows-nt))
   (package-install 'exec-path-from-shell)
   (exec-path-from-shell-initialize))
 
@@ -93,8 +93,9 @@
 (load-file "~/.emacs.d/johncoder/keybindings.el")
 (load-file "~/.emacs.d/johncoder/erc.el")
 
-(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
-(setq exec-path (append exec-path '("/usr/local/bin")))
+(unless (eq system-type 'windows-nt)
+  (setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
+  (setq exec-path (append exec-path '("/usr/local/bin"))))
 
 (setq backup-directory-alist `(("." . "~/.saves")))
 (setq backup-by-copying t)
@@ -131,7 +132,6 @@
    (vector "#c5c8c6" "#cc6666" "#b5bd68" "#f0c674" "#81a2be" "#b294bb" "#8abeb7" "#1d1f21"))
  '(fci-rule-color "#373b41")
  '(hl-sexp-background-color "#efebe9")
- '(js2-basic-offset 2 t)
  '(js-indent-level 2)
  '(package-selected-packages
    (quote
