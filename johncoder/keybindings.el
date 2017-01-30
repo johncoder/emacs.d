@@ -99,5 +99,6 @@ Repeated invocations toggle between the two most recently open buffers."
 (require 'smart-comment)
 (global-set-key (kbd "M-;") 'smart-comment)
 (global-set-key (kbd "C-<f11>") 'toggle-frame-maximized)
-(global-set-key (kbd "C-`") 'transpose-windows)
+;; (global-set-key (kbd "C-`") 'transpose-windows)
+(global-set-key (kbd "C-~") 'transpose-windows)
 (global-set-key (kbd "C-x C-o") 'ff-find-other-file)
